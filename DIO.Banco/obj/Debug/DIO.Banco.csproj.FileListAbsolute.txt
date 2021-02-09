@@ -1,0 +1,10 @@
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\bin\Debug\DIO.Banco.exe.config
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\bin\Debug\DIO.Banco.exe
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\bin\Debug\DIO.Banco.pdb
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csprojAssemblyReference.cache
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.DioBankForm.resources
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.Properties.Resources.resources
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csproj.GenerateResource.cache
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csproj.CoreCompileInputs.cache
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.exe
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.pdb

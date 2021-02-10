@@ -38,24 +38,25 @@ namespace DIO.Banco
             this.rdbPessoaFisica = new System.Windows.Forms.RadioButton();
             this.rdbpessoaJuridica = new System.Windows.Forms.RadioButton();
             this.mkdSaldo = new System.Windows.Forms.MaskedTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.ckbDepositoInicial = new System.Windows.Forms.CheckBox();
+            this.mkdDepositoInicial = new System.Windows.Forms.MaskedTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdicionarUsuario
             // 
-            this.btnAdicionarUsuario.Location = new System.Drawing.Point(378, 74);
+            this.btnAdicionarUsuario.Location = new System.Drawing.Point(334, 73);
             this.btnAdicionarUsuario.Name = "btnAdicionarUsuario";
             this.btnAdicionarUsuario.Size = new System.Drawing.Size(121, 23);
             this.btnAdicionarUsuario.TabIndex = 0;
             this.btnAdicionarUsuario.Text = "Adicionar Usuario";
             this.btnAdicionarUsuario.UseVisualStyleBackColor = true;
+            this.btnAdicionarUsuario.Click += new System.EventHandler(this.btnAdicionarUsuario_Click);
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(424, 285);
+            this.btnSair.Location = new System.Drawing.Point(380, 288);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 1;
@@ -93,7 +94,7 @@ namespace DIO.Banco
             // 
             this.txtNome.Location = new System.Drawing.Point(89, 12);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(410, 20);
+            this.txtNome.Size = new System.Drawing.Size(366, 20);
             this.txtNome.TabIndex = 4;
             // 
             // rdbPessoaFisica
@@ -125,41 +126,49 @@ namespace DIO.Banco
             this.mkdSaldo.Name = "mkdSaldo";
             this.mkdSaldo.Size = new System.Drawing.Size(85, 20);
             this.mkdSaldo.TabIndex = 6;
+            this.mkdSaldo.ValidatingType = typeof(int);
             // 
-            // dataGridView1
+            // dgvClientes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 103);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(484, 179);
-            this.dataGridView1.TabIndex = 7;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Location = new System.Drawing.Point(15, 103);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.Size = new System.Drawing.Size(440, 179);
+            this.dgvClientes.TabIndex = 7;
             // 
-            // checkBox1
+            // ckbDepositoInicial
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(290, 44);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Deposito Inicial";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ckbDepositoInicial.AutoSize = true;
+            this.ckbDepositoInicial.Location = new System.Drawing.Point(290, 44);
+            this.ckbDepositoInicial.Name = "ckbDepositoInicial";
+            this.ckbDepositoInicial.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ckbDepositoInicial.Size = new System.Drawing.Size(98, 17);
+            this.ckbDepositoInicial.TabIndex = 8;
+            this.ckbDepositoInicial.Text = "Deposito Inicial";
+            this.ckbDepositoInicial.UseVisualStyleBackColor = true;
+            this.ckbDepositoInicial.CheckedChanged += new System.EventHandler(this.ckbDepositoInicial_CheckedChanged);
             // 
-            // maskedTextBox1
+            // mkdDepositoInicial
             // 
-            this.maskedTextBox1.Enabled = false;
-            this.maskedTextBox1.Location = new System.Drawing.Point(394, 42);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(105, 20);
-            this.maskedTextBox1.TabIndex = 9;
+            this.mkdDepositoInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mkdDepositoInicial.Enabled = false;
+            this.mkdDepositoInicial.Location = new System.Drawing.Point(394, 42);
+            this.mkdDepositoInicial.Mask = "00.000";
+            this.mkdDepositoInicial.Name = "mkdDepositoInicial";
+            this.mkdDepositoInicial.RejectInputOnFirstFailure = true;
+            this.mkdDepositoInicial.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mkdDepositoInicial.Size = new System.Drawing.Size(61, 20);
+            this.mkdDepositoInicial.TabIndex = 9;
+            this.mkdDepositoInicial.ValidatingType = typeof(int);
             // 
             // DioBankForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 320);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(467, 320);
+            this.Controls.Add(this.mkdDepositoInicial);
+            this.Controls.Add(this.ckbDepositoInicial);
+            this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.mkdSaldo);
             this.Controls.Add(this.rdbpessoaJuridica);
             this.Controls.Add(this.rdbPessoaFisica);
@@ -173,7 +182,7 @@ namespace DIO.Banco
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Banco";
             this.Load += new System.EventHandler(this.DioBankForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,9 +199,9 @@ namespace DIO.Banco
         private System.Windows.Forms.RadioButton rdbPessoaFisica;
         private System.Windows.Forms.RadioButton rdbpessoaJuridica;
         private System.Windows.Forms.MaskedTextBox mkdSaldo;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.CheckBox ckbDepositoInicial;
+        private System.Windows.Forms.MaskedTextBox mkdDepositoInicial;
     }
 }
 

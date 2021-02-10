@@ -1,6 +1,7 @@
 ﻿using DIO.Banco.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,18 @@ namespace DIO.Banco.Entidades
 {
     class Conta
     {
-        private double Saldo { get; set; }
-        private double Credito { get; set; }
-        private string Nome { get; set; }
+        [Display(Name = "Nome")]
+        public string Nome { get; private set; }
+        [Display(Name = "Saldo")]
+        public double Saldo { get; private set; }
+        [Display(Name = "Credito")]
 
-        private TipoConta TipoConta { get; set; }
+        public double Credito { get; private set; }
 
-        public Conta(double saldo, double credito, string nome, TipoConta tipoConta)
+        [Display(Name = "Tipo de Conta")]
+        public TipoConta TipoConta { get; private set; }
+
+        public Conta(string nome, double saldo, double credito, TipoConta tipoConta)
         {
             Saldo = saldo;
             Credito = credito;

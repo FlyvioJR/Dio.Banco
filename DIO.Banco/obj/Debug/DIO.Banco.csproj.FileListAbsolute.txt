@@ -8,3 +8,5 @@ C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csproj.Gener
 C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csproj.CoreCompileInputs.cache
 C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.exe
 C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.pdb
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Flyvi\source\repos\DIO.Banco\DIO.Banco\obj\Debug\DIO.Banco.csproj.CopyComplete

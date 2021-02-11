@@ -47,9 +47,10 @@ namespace DIO.Banco
             this.rdbTransferencia = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.mkdValor = new System.Windows.Forms.MaskedTextBox();
-            this.txtNomeBeneficiado = new System.Windows.Forms.TextBox();
+            this.txtIdBeneficiado = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRealizarOperacao = new System.Windows.Forms.Button();
+            this.btnLimparTela = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -202,24 +203,24 @@ namespace DIO.Banco
             this.rdbDeposito.TabStop = true;
             this.rdbDeposito.Text = "Deposito";
             this.rdbDeposito.UseVisualStyleBackColor = true;
-            this.rdbDeposito.CheckedChanged += new System.EventHandler(this.rdbSaque_CheckedChanged);
+            this.rdbDeposito.CheckedChanged += new System.EventHandler(this.rdbDeposito_CheckedChanged);
             // 
             // rdbTransferencia
             // 
             this.rdbTransferencia.AutoSize = true;
-            this.rdbTransferencia.Location = new System.Drawing.Point(255, 131);
+            this.rdbTransferencia.Location = new System.Drawing.Point(347, 103);
             this.rdbTransferencia.Name = "rdbTransferencia";
             this.rdbTransferencia.Size = new System.Drawing.Size(85, 17);
             this.rdbTransferencia.TabIndex = 13;
             this.rdbTransferencia.TabStop = true;
             this.rdbTransferencia.Text = "Tranferência";
             this.rdbTransferencia.UseVisualStyleBackColor = true;
-            this.rdbTransferencia.CheckedChanged += new System.EventHandler(this.rdbSaque_CheckedChanged);
+            this.rdbTransferencia.CheckedChanged += new System.EventHandler(this.rdbDeposito_CheckedChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 105);
+            this.label2.Location = new System.Drawing.Point(210, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 14;
@@ -229,7 +230,7 @@ namespace DIO.Banco
             // 
             this.mkdValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mkdValor.Enabled = false;
-            this.mkdValor.Location = new System.Drawing.Point(410, 102);
+            this.mkdValor.Location = new System.Drawing.Point(277, 130);
             this.mkdValor.Mask = "00.000";
             this.mkdValor.Name = "mkdValor";
             this.mkdValor.RejectInputOnFirstFailure = true;
@@ -238,21 +239,22 @@ namespace DIO.Banco
             this.mkdValor.TabIndex = 15;
             this.mkdValor.ValidatingType = typeof(int);
             // 
-            // txtNomeBeneficiado
+            // txtIdBeneficiado
             // 
-            this.txtNomeBeneficiado.Location = new System.Drawing.Point(126, 130);
-            this.txtNomeBeneficiado.Name = "txtNomeBeneficiado";
-            this.txtNomeBeneficiado.Size = new System.Drawing.Size(115, 20);
-            this.txtNomeBeneficiado.TabIndex = 17;
+            this.txtIdBeneficiado.Enabled = false;
+            this.txtIdBeneficiado.Location = new System.Drawing.Point(126, 130);
+            this.txtIdBeneficiado.Name = "txtIdBeneficiado";
+            this.txtIdBeneficiado.Size = new System.Drawing.Size(48, 20);
+            this.txtIdBeneficiado.TabIndex = 17;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Nome do beneficiado";
+            this.label3.Text = "Id do beneficiado";
             // 
             // btnRealizarOperacao
             // 
@@ -264,13 +266,24 @@ namespace DIO.Banco
             this.btnRealizarOperacao.UseVisualStyleBackColor = true;
             this.btnRealizarOperacao.Click += new System.EventHandler(this.btnRealizarOperacao_Click);
             // 
+            // btnLimparTela
+            // 
+            this.btnLimparTela.Location = new System.Drawing.Point(300, 347);
+            this.btnLimparTela.Name = "btnLimparTela";
+            this.btnLimparTela.Size = new System.Drawing.Size(75, 23);
+            this.btnLimparTela.TabIndex = 19;
+            this.btnLimparTela.Text = "Limpar";
+            this.btnLimparTela.UseVisualStyleBackColor = true;
+            this.btnLimparTela.Click += new System.EventHandler(this.btnLimparTela_Click);
+            // 
             // DioBankForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 378);
+            this.Controls.Add(this.btnLimparTela);
             this.Controls.Add(this.btnRealizarOperacao);
-            this.Controls.Add(this.txtNomeBeneficiado);
+            this.Controls.Add(this.txtIdBeneficiado);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mkdValor);
             this.Controls.Add(this.label2);
@@ -320,9 +333,10 @@ namespace DIO.Banco
         private System.Windows.Forms.RadioButton rdbTransferencia;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox mkdValor;
-        private System.Windows.Forms.TextBox txtNomeBeneficiado;
+        private System.Windows.Forms.TextBox txtIdBeneficiado;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRealizarOperacao;
+        private System.Windows.Forms.Button btnLimparTela;
     }
 }
 

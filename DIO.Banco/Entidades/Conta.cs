@@ -21,12 +21,19 @@ namespace DIO.Banco.Entidades
         [Display(Name = "Tipo de Conta")]
         public TipoConta TipoConta { get; private set; }
 
-        public Conta(string nome, double saldo, double credito, TipoConta tipoConta)
+        public int Id { get;  set; }
+
+        public Conta() 
+        {
+        }
+
+        public Conta(string nome, double saldo, double credito, TipoConta tipoConta, int id)
         {
             Saldo = saldo;
             Credito = credito;
             Nome = nome;
             TipoConta = tipoConta;
+            Id = id;
         }
 
         public bool Sacar(double valorSaque)
@@ -52,12 +59,33 @@ namespace DIO.Banco.Entidades
                 Console.WriteLine($"Valor incorreto! Por favor tente novamente.");
         }
 
+        public void DepositarParaBeneficiario(double valorDeposito, Conta contaBeneficiado)
+        {
+            if (valorDeposito > 0)
+            {
+                contaBeneficiado.Saldo += valorDeposito;
+                Console.WriteLine("Valor depositado com sucesso!");
+            }
+            else
+                Console.WriteLine($"Valor incorreto! Por favor tente novamente.");
+        }
+
         public void Tranferir(double valorTransferencia, Conta contaDestino)
         {
             if (Sacar(valorTransferencia))
             {
                 contaDestino.Depositar(valorTransferencia);
             }
+        }
+
+        public Conta BuscarConta(List<Conta> lstContas, String nome)
+        {
+            return lstContas.Find(x => x.Nome.Equals(nome));
+        }
+
+        public Conta BuscarContaPorId(List<Conta> lstContas, int id)
+        {
+            return lstContas.Find(x => x.Id == id);
         }
     }
 }

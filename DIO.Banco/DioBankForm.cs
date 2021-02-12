@@ -44,6 +44,21 @@ namespace DIO.Banco
             dgvClientes.Columns[3].HeaderText = "Tipo de Conta";
         }
 
+        public bool ValidarNovaConta()
+        {
+            if (txtNome.Text.Trim().Equals("") || txtNome.Text.Trim().Length < 10)
+            {
+                MessageBox.Show("Insira um nome válido!");
+                return false;
+            }
+            if (mkdDepositoInicial.Text.Trim().Equals(","))
+            {
+                MessageBox.Show("Insira um valor válido");
+                return false;
+            }
+            return true;
+        }
+
         public void LimparTela()
         {
             txtNome.Clear();
@@ -56,6 +71,8 @@ namespace DIO.Banco
             rdbTransferencia.Checked = false;
             txtIdBeneficiado.Enabled = false;
             btnAdicionarUsuario.Enabled = true;
+            ckbDepositoInicial.Checked = false;
+            rdbPessoaFisica.Checked = true;
         }
 
         #endregion
@@ -71,16 +88,16 @@ namespace DIO.Banco
 
         private void btnAdicionarUsuario_Click(object sender, EventArgs e)
         {
-            if(entidade.Id == 0)
+            if(ValidarNovaConta())
             {
                 string nome = txtNome.Text;
-                double saldo = 0.001F;
-                double credito = 500.002F;
+                double saldo = 0.002F;
+                double credito = 500.00;
                 int IdAtual = lstContas.ToArray().Length + 1;
 
                 if (ckbDepositoInicial.Checked)
                 {
-                    double.Parse(mkdDepositoInicial.ToString());
+                    double.TryParse(mkdDepositoInicial.Text.Trim(), out saldo);
                 }
 
                 Conta conta = new Conta(

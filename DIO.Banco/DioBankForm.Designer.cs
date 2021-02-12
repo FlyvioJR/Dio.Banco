@@ -164,7 +164,7 @@ namespace DIO.Banco
             this.mkdDepositoInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mkdDepositoInicial.Enabled = false;
             this.mkdDepositoInicial.Location = new System.Drawing.Point(410, 42);
-            this.mkdDepositoInicial.Mask = "00.000";
+            this.mkdDepositoInicial.Mask = "0000";
             this.mkdDepositoInicial.Name = "mkdDepositoInicial";
             this.mkdDepositoInicial.RejectInputOnFirstFailure = true;
             this.mkdDepositoInicial.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -231,7 +231,7 @@ namespace DIO.Banco
             this.mkdValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mkdValor.Enabled = false;
             this.mkdValor.Location = new System.Drawing.Point(277, 130);
-            this.mkdValor.Mask = "00.000";
+            this.mkdValor.Mask = "0000";
             this.mkdValor.Name = "mkdValor";
             this.mkdValor.RejectInputOnFirstFailure = true;
             this.mkdValor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

@@ -13,6 +13,7 @@ namespace DIO.Banco.Entidades
         [Display(Name = "Nome")]
         public string Nome { get; private set; }
         [Display(Name = "Saldo")]
+        
         public double Saldo { get; private set; }
         [Display(Name = "Credito")]
 

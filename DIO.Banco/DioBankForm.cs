@@ -56,6 +56,14 @@ namespace DIO.Banco
                 MessageBox.Show("Insira um valor válido");
                 return false;
             }
+            foreach (var conta in lstContas)
+            {
+                if (conta.Nome.ToUpper().Equals(txtNome.Text.ToUpper()))
+                {
+                    MessageBox.Show("Usuario já existe!");
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -127,9 +135,7 @@ namespace DIO.Banco
                 int idAtual = lstContas.ToArray().Length + 1;
 
                 if (ckbDepositoInicial.Checked)
-                {
                     double.TryParse(mkdDepositoInicial.Text.Trim(), out saldo);
-                }
 
                 Conta conta = new Conta(
                     nome,

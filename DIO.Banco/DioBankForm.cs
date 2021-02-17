@@ -1,24 +1,21 @@
 ﻿using DIO.Banco.Entidades;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DIO.Banco
 {
     public partial class DioBankForm : Form
     {
+        #region variaveis globais
+        
         Conta entidade = new Conta();
-
         List<Conta> lstContas = new List<Conta>() {
             new Conta("Flavio de Souza Santos Junior", 170, 500, Enums.TipoConta.PessoaFisica, 1),
             new Conta("Curso Digital Innovation One", 550, 500, Enums.TipoConta.PessoaJuridica, 2)
         };
+
+        #endregion
 
         public DioBankForm()
         {
@@ -116,6 +113,7 @@ namespace DIO.Banco
 
         #endregion
 
+        #region eventos
 
         private void DioBankForm_Load(object sender, EventArgs e)
         {
@@ -255,5 +253,12 @@ namespace DIO.Banco
         {
             LimparTela();
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+       
+        #endregion
     }
 }

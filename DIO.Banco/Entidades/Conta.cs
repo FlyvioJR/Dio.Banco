@@ -22,7 +22,7 @@ namespace DIO.Banco.Entidades
         [Display(Name = "Tipo de Conta")]
         public TipoConta TipoConta { get; private set; }
 
-        public int Id { get;  set; }
+        public int Id { get; private set; }
 
         public Conta() 
         {
@@ -41,47 +41,39 @@ namespace DIO.Banco.Entidades
         {
             if (Saldo - valorSaque < (Credito * -1))
             {
-                Console.WriteLine("Saldo Insuficiente!");
                 return false;
             }
             Saldo -= valorSaque;
-            Console.WriteLine($"Saque realizado com sucesso! O seu saldo é {Saldo}");
             return true;
         }
 
-        public void Depositar(double valorDeposito)
+        public bool Depositar(double valorDeposito)
         {
             if (valorDeposito > 0)
             {
                 Saldo += valorDeposito;
-                Console.WriteLine($"Valor depositado com sucesso! O seu saldo é {Saldo}");
+                return true;
             }
             else
-                Console.WriteLine($"Valor incorreto! Por favor tente novamente.");
+                return false;
         }
 
-        public void DepositarParaBeneficiario(double valorDeposito, Conta contaBeneficiado)
+        public bool DepositarParaBeneficiario(double valorDeposito, Conta contaBeneficiado)
         {
             if (valorDeposito > 0)
             {
                 contaBeneficiado.Saldo += valorDeposito;
-                Console.WriteLine("Valor depositado com sucesso!");
+                return true;
             }
             else
-                Console.WriteLine($"Valor incorreto! Por favor tente novamente.");
+                return false;
         }
 
-        public void Tranferir(double valorTransferencia, Conta contaDestino)
+        public bool Tranferir(double valorTransferencia, Conta contaDestino)
         {
             if (Sacar(valorTransferencia))
-            {
-                contaDestino.Depositar(valorTransferencia);
-            }
-        }
-
-        public Conta BuscarConta(List<Conta> lstContas, String nome)
-        {
-            return lstContas.Find(x => x.Nome.Equals(nome));
+                return contaDestino.Depositar(valorTransferencia);
+            return false;
         }
 
         public Conta BuscarContaPorId(List<Conta> lstContas, int id)

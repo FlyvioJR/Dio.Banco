@@ -59,6 +59,34 @@ namespace DIO.Banco
             return true;
         }
 
+        public bool ValidaOperacoes()
+        {
+            if (mkdValor.Text.Equals(""))
+            {
+                MessageBox.Show("Insira um valor válido");
+                return false;
+            }
+
+            if (rdbTransferencia.Checked)
+            {
+                if (txtIdBeneficiado.Text.Equals(""))
+                {
+                    MessageBox.Show("Insira o Id do beneficiado!");
+                    return false;
+                }
+                
+                int.TryParse(txtIdBeneficiado.Text, out int idBeneficiado);
+                
+                if (idBeneficiado > lstContas.ToArray().Length || idBeneficiado < 1)
+                {
+                    MessageBox.Show("Insira um Id válido!");
+                    txtIdBeneficiado.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void LimparTela()
         {
             txtNome.Clear();
@@ -67,8 +95,11 @@ namespace DIO.Banco
             mkdSaldo.Clear();
             mkdValor.Clear();
             rdbSaque.Checked = false;
+            rdbSaque.Enabled = false;
             rdbDeposito.Checked = false;
+            rdbDeposito.Enabled = false; 
             rdbTransferencia.Checked = false;
+            rdbTransferencia.Enabled = false;
             txtIdBeneficiado.Enabled = false;
             btnAdicionarUsuario.Enabled = true;
             ckbDepositoInicial.Checked = false;
@@ -91,9 +122,9 @@ namespace DIO.Banco
             if(ValidarNovaConta())
             {
                 string nome = txtNome.Text;
-                double saldo = 0.002F;
+                double saldo = 0.00;
                 double credito = 500.00;
-                int IdAtual = lstContas.ToArray().Length + 1;
+                int idAtual = lstContas.ToArray().Length + 1;
 
                 if (ckbDepositoInicial.Checked)
                 {
@@ -105,7 +136,7 @@ namespace DIO.Banco
                     saldo,
                     credito,
                     rdbPessoaFisica.Checked ? Enums.TipoConta.PessoaFisica : Enums.TipoConta.PessoaJuridica,
-                    IdAtual);
+                    idAtual);
 
                 lstContas.Add(conta);
                 DioBankForm_Load(sender, e);
@@ -128,36 +159,41 @@ namespace DIO.Banco
 
         private void btnRealizarOperacao_Click(object sender, EventArgs e)
         {
+            if (entidade == null)
+                return;
             entidade = entidade.BuscarContaPorId(lstContas, entidade.Id);
+
+            if (!ValidaOperacoes())
+                return;
 
             if (rdbSaque.Checked && entidade.Id > 0)
             {
-
                 double valor = double.Parse(mkdValor.Text);
-                entidade.Sacar(valor);
+                MessageBox.Show(entidade.Sacar(valor) ? $"Saque realizado com sucesso! O seu saldo é {entidade.Saldo}" : "Saldo Insuficiente!");
             }
             else if (rdbDeposito.Checked && entidade.Id > 0)
             {
                 if (txtIdBeneficiado.Text.Equals(""))
                 {
                     double valor = double.Parse(mkdValor.Text);
-                    entidade.Depositar(valor);
+                    MessageBox.Show(entidade.Depositar(valor) ? $"Valor depositado com sucesso! O seu saldo é {entidade.Saldo}" : "Valor incorreto! Por favor tente novamente.");
                 }
                 else
                 {
                     double valor = double.Parse(mkdValor.Text);
-                    Conta contaBeneficiado = new Conta().BuscarConta(lstContas ,txtIdBeneficiado.Text);
-
-                    entidade.DepositarParaBeneficiario(valor, contaBeneficiado);
+                    int idBeneficiado = int.Parse(txtIdBeneficiado.Text);
+                    Conta contaBeneficiado = new Conta();
+                    contaBeneficiado = new Conta().BuscarContaPorId(lstContas, idBeneficiado);
+                    MessageBox.Show(entidade.DepositarParaBeneficiario(valor, contaBeneficiado) ? "Valor depositado com sucesso!" : "Valor incorreto! Por favor tente novamente.");
                 }
             }
             else if (rdbTransferencia.Checked && entidade.Id > 0)
             {
                 double valor = double.Parse(mkdValor.Text);
+                int idBeneficiado = int.Parse(txtIdBeneficiado.Text);
 
-                Conta contaBeneficiado = new Conta().BuscarConta(lstContas, txtIdBeneficiado.Text);
-                entidade.Tranferir(valor, contaBeneficiado);
-
+                Conta contaBeneficiado = new Conta().BuscarContaPorId(lstContas, idBeneficiado);
+                MessageBox.Show(entidade.Tranferir(valor, contaBeneficiado) ? $"Tranferencia realizada com sucesso! O seu saldo é {entidade.Saldo}" : "Saldo Insuficiente!");
             }
             DioBankForm_Load(sender, e);
         }
@@ -165,6 +201,10 @@ namespace DIO.Banco
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LimparTela();
+
+            if (e.RowIndex < 0)
+                return;
+
             txtNome.Text = dgvClientes.Rows[e.RowIndex].Cells[0].Value.ToString();
             mkdSaldo.Text = dgvClientes.Rows[e.RowIndex].Cells[1].Value.ToString();
             
@@ -173,9 +213,12 @@ namespace DIO.Banco
             if (dgvClientes.Rows[e.RowIndex].Cells[3].Value.ToString() == "PessoaJuridica")
                 rdbpessoaJuridica.Checked = true;
 
-            entidade.Id = int.Parse(dgvClientes.Rows[e.RowIndex].Cells[4].Value.ToString());
+            entidade = new Conta().BuscarContaPorId(lstContas, (int)dgvClientes.Rows[e.RowIndex].Cells[4].Value);
 
-            btnAdicionarUsuario.Enabled = entidade.Id > 0 ? false : true; 
+            btnAdicionarUsuario.Enabled = entidade.Id > 0 ? false : true;
+            rdbSaque.Enabled = entidade.Id > 0 ? true : false;
+            rdbDeposito.Enabled = entidade.Id > 0 ? true : false;
+            rdbTransferencia.Enabled = entidade.Id > 0 ? true : false;
         }
 
         private void rdbSaque_CheckedChanged(object sender, EventArgs e)
